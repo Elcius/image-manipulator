@@ -1,20 +1,29 @@
-function smoothing_effect(img_name, op)
-    % Avarage
-    if op == 1
-        H = fspecial('average',[3 3]);
-        smoothed_av = imfilter(img_name,H,'replicate');
-        imshowpair(img_name,smoothed_av,'montage')
+function ret = smoothing_effect(img, op)
 
-    % Median
-    elseif op == 2
-        R = img_name(:,:,1);
-        G = img_name(:,:,2);
-        B = img_name(:,:,3);
+noi = imnoise(img,'salt & pepper',0.01);
+% Avarage
+if op == 1
+    H = fspecial('average',[3 3]);
+    smoothed = imfilter(noi,H,'replicate');
 
-        smoothed_med(:,:,1) = medfilt2(R);
-        smoothed_med(:,:,2) = medfilt2(G);
-        smoothed_med(:,:,3) = medfilt2(B);
+    imshowpair(noi,smoothed,'montage')
+    imwrite(noi,'noised.jpg')
+    imwrite(smoothed,'smoothed.jpg')
 
-        imshowpair(img_name,smoothed_med,'montage')
-    end
+% Median
+elseif op == 2
+    R = noi(:,:,1);
+    G = noi(:,:,2);
+    B = noi(:,:,3);
+
+    smoothed(:,:,1) = medfilt2(R);
+    smoothed(:,:,2) = medfilt2(G);
+    smoothed(:,:,3) = medfilt2(B);
+
+    imshowpair(noi,smoothed,'montage')
+    imwrite(noi,'noised2.jpg')
+    imwrite(smoothed,'smoothed2.jpg')
+end
+
+ret = smoothed
 end
