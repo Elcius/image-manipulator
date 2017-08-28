@@ -1,6 +1,6 @@
 function rgb_components(img_name)
 
-disp(img_name)
+%disp(img_name);
 red = uint8(zeros(size(img_name)));
 green = uint8(zeros(size(img_name)));
 blue = uint8(zeros(size(img_name)));

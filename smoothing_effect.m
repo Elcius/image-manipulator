@@ -1,4 +1,4 @@
-function ret = smoothing_effect(img, op)
+function smoothing_effect(img, op)
 
 noi = imnoise(img,'salt & pepper',0.01);
 % Avarage
@@ -24,6 +24,4 @@ elseif op == 2
     imwrite(noi,'noised2.jpg')
     imwrite(smoothed,'smoothed2.jpg')
 end
-
-ret = smoothed
 end
