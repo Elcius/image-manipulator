@@ -2,12 +2,16 @@ function noise_average_median(yuvop)
     I = imread('passaros.jpg');
     
     if yuvop == true
-        temp = RGBYUV(I);
-        yuv = zeros(size(temp));
-        yuv(:,:,1) = temp(:,:,1);
-        Jsp = imnoise(yuv,'salt & pepper',0.02);
-        Jgaus = imnoise(yuv,'gaussian',0,0.005);
-        Jspeckle = imnoise(yuv,'speckle',0.04);
+        yuv = RGBYUV(I);
+        Jsp = yuv;
+        Jgaus = yuv;
+        Jspeckle = yuv;
+        Jsp(:,:,1) = imnoise(Jsp(:,:,1),'salt & pepper',0.02);
+        Jgaus(:,:,1) = imnoise(Jgaus(:,:,1),'gaussian',0,0.005);
+        Jspeckle(:,:,1) = imnoise(Jspeckle(:,:,1),'speckle',0.04);
+        Jsp = YUVRGB(Jsp);
+        Jgaus = YUVRGB(Jgaus);
+        Jspeckle = YUVRGB(Jspeckle);
     else
         Jsp = imnoise(I,'salt & pepper',0.02);
         Jgaus = imnoise(I,'gaussian',0,0.005);
@@ -21,11 +25,7 @@ function noise_average_median(yuvop)
     subplot(2,2,1); imshow(Jsp); title('Salt & Pepper')
     subplot(2,2,2); imshow(Jgaus); title('Gaussian')
     subplot(2,2,3); imshow(Jspeckle); title('Speckle')
-    if yuvop == true
-        subplot(2,2,4); imshow(yuv); title('Original')
-    else
-        subplot(2,2,4); imshow(I); title('Original')
-    end
+    subplot(2,2,4); imshow(I); title('Original')
 
     % Average filter
 

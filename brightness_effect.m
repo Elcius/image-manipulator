@@ -3,10 +3,8 @@ function brightness_effect(img, bright, op, yuvop)
 % Additive
 if op == 1
     if yuvop == true
-        temp = RGBYUV(img);
-        yuv = zeros(size(temp));
-        yuv(:,:,1) = temp(:,:,1);
-        brighter = imadd(yuv, bright);
+        brighter = RGBYUV(img);
+        brighter(:,:,1) = imadd(brighter(:,:,1), bright);
         brighter = YUVRGB(brighter);
     else
         brighter = imadd(img, bright);
@@ -16,10 +14,8 @@ if op == 1
 % Multiplicative
 elseif op == 2
     if yuvop == true
-        temp = RGBYUV(img);
-        yuv = zeros(size(temp));
-        yuv(:,:,1) = temp(:,:,1);
-        brighter = immultiply(yuv, bright);
+        brighter = RGBYUV(img);
+        brighter(:,:,1) = immultiply(brighter(:,:,1), bright);
         brighter = YUVRGB(brighter);
     else
         brighter = immultiply(img, bright);

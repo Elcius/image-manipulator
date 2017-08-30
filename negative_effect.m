@@ -1,10 +1,8 @@
 function negative_effect(img, yuvop)
 
 if yuvop == true
-    temp = RGBYUV(img);
-    yuv = zeros(size(temp));
-    yuv(:,:,1) = temp(:,:,1);
-    negative = uint8(-1*(double(yuv)-255));
+    negative = RGBYUV(img);
+    negative(:,:,1) = uint8(-1*(double(negative(:,:,1)-255)));
     negative = YUVRGB(negative);
     imshowpair(img,negative,'montage')
     imwrite(negative,'negative2.bmp')
