@@ -19,7 +19,7 @@ function ret = convolution(A, h, crop)
     begin = begin(1:2);
     endin = aux + begin -[1 1];
     B(begin(1):endin(1), begin(2):endin(2), :) = A(:,:,:);
-    G = zeros(size(A));
+    G = zeros(endin(1), endin(2), 3);
 
     % Convolution loop
     for i = 1:endin(1),
