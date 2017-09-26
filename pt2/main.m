@@ -1,7 +1,6 @@
-%image = imread('passaros.jpg');
-%image = imread('moon.jpg');
-%image = imread('lena.bmp');
-image =['1.jpg' '2.jpg' '3.jpg' '4.jpg'];
+birds = imread('passaros.jpg');
+lena = imread('lena.bmp');
+moon = imread('moon.jpg');
 
 %h = [-1 -1 -1; 0 0 0; 1 1 1];
 %h = [-1 -1 -1; -1 8 -1; -1 -1 -1];
@@ -16,13 +15,18 @@ h = [-3.3605   -1.1853   -4.4497    1.1321    4.3346    3.2197;
      -1.4809    1.7159    1.3943    4.1304    5.4635    0.4038];
 
 %h = normrnd(-1.03,4,6,6)
-for i = 1:4,
-    image = im
-    G = convolution(image, h, false);
-    figure, imshow(G)
-    pause;
-    
-end
+
+% -------- CONVOLUÇÃO --------------------------------
+%G = convolution(moon, h, true);
+%figure, imshowpair(moon, G, 'montage')
+
+%G = convolution(lena, h, true);
+%figure, imshowpair(lena, G, 'montage')
 
 %test = imfilter(image, h, 'conv');
 %figure, imshowpair(test,image,'montage')
+
+% -------- AGUÇAMENTO --------------------------------
+
+sharpnessFilter(moon, 1, 1, 1); % aguçamento a1
+%sharpnessFilter(moon, 1, 1, 2); % aguçamento a2
