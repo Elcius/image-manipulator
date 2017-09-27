@@ -1,10 +1,10 @@
-function imhistexp(image)
+function imhisteq(image)
     aux = zeros(size(image));
     channel = 'RGB';
+    k = 255.0/(size(image, 1)*size(image, 1));
     
     figure, subplot(2,4,1);
     imhist(rgb2gray(image));
-    %axis([0 255 0 3e3]);
     title('Grayscale');
     grid on
     
@@ -12,21 +12,20 @@ function imhistexp(image)
         % Calculations
         [counts, binLoc] = imhist(image(:,:,i));
         
-        rmin = find(counts>0, 1, 'first');
-        rmax = find(counts>0, 1, 'last');
-        
-        aux(:,:,i) = round((double(image(:,:,i) - rmin)/double(rmax - rmin))*255.0);
+        for r = 1:size(aux, 1),
+            for c = 1:size(aux, 2),
+                aux(r,c,i) = round(k*sum(counts(1:double(image(r,c,i)))));
+            end
+        end
 
         % Ploting
         subplot(2,4,i+1);
         imhist(image(:,:,i));
-        %axis([0 255 0 1.5e3]);
         title(channel(i));
         grid on
         
         subplot(2,4,i+5);
         imhist(uint8(aux(:,:,i)));
-        %axis([0 255 0 1.5e3]);
         title(channel(i));
         grid on
     end
@@ -34,14 +33,13 @@ function imhistexp(image)
     
     subplot(2,4,5);
     imhist(rgb2gray(G));
-    %axis([0 255 0 1.5e3]);
     title('Grayscale');
     grid on
-    suptitle('Expansão de Histograma (histogramas)');
+    suptitle('Equalização de Histograma (histogramas)');
     
     pause;
     
     figure, subplot(1,2,1); imshow(image); title('Original');
-    subplot(1,2,2); imshow(G); title('Expandida');
-    suptitle('Expansão de Histograma (comparação)');
+    subplot(1,2,2); imshow(G); title('Equalizada');
+    suptitle('Equalização de Histograma (comparação)');
 end

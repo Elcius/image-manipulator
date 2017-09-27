@@ -1,3 +1,4 @@
+landscape = imread('paisagem.jpg');
 birds = imread('passaros.jpg');
 lena = imread('lena.bmp');
 moon = imread('moon.jpg');
@@ -24,3 +25,11 @@ h = [-1 -1 -1; 0 0 0; 1 1 1];
 
 %sharpnessFilter(moon, 1, 1, 1); % aguçamento a1
 %sharpnessFilter(moon, 1, 1, 2); % aguçamento a2
+
+%% -------- EXPANSÃO DE HISTOGRAMA --------------------
+
+%imhistexp(boat);
+
+%% -------- EQUALIZAÇÃO DE HISTOGRAMA -----------------
+
+imhisteq(boat);
