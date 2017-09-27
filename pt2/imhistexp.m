@@ -6,7 +6,7 @@ function ret = imhistexp(image)
         rmin = find(counts>0, 1, 'first');
         rmax = find(counts>0, 1, 'last');
         
-        aux(:,:,i) = round((double(image(:,:,i) - rmin)/double(rmax - rmin))*255.0) +1;
+        aux(:,:,i) = round((double(image(:,:,i) - rmin)/double(rmax - rmin))*255.0);
     end
     
     ret = uint8(aux);
