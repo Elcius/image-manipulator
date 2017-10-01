@@ -1,8 +1,5 @@
-landscape = imread('paisagem.jpg');
-birds = imread('passaros.jpg');
-lena = imread('lena.bmp');
-moon = imread('moon.jpg');
-boat = imread('boat.jpg');
+butterfly = imread('monarch_in_may.jpg');
+castle = imread('castelo.jpg');
 
 h = [-1 -1 -1; 0 0 0; 1 1 1];
 %h = [-1 -1 -1; -1 8 -1; -1 -1 -1];
@@ -23,8 +20,26 @@ h = [-1 -1 -1; 0 0 0; 1 1 1];
 
 %% -------- AGUÇAMENTO --------------------------------
 
-%sharpnessFilter(moon, 1, 1, 1); % aguçamento a1
-%sharpnessFilter(moon, 1, 1, 2); % aguçamento a2
+%a = 2;     % mask type
+%C = 1;
+%D = 1;
+%sharpnessFilter(butterfly, C, D, a); % aguçamento a = 1,2
+
+%% -------- DETECÇÃO DE BORDAS ------------------------
+
+%b = 4;     % mask type
+%edgeDetectionFilter(castle, b);      % detecção b = 1,2,3,4
+
+%% -------- RELEVO ------------------------------------
+
+%c = 3;     % mask type
+%embossFilter(castle, c);      % relevo c = 1,2,3
+
+%% -------- GAUSSIANO ---------------------------------
+
+N = 5;      % Size of Gaussian mask
+sigma = 2;
+gaussianFilter(castle, N, sigma, 2);    
 
 %% -------- EXPANSÃO DE HISTOGRAMA --------------------
 
@@ -32,4 +47,4 @@ h = [-1 -1 -1; 0 0 0; 1 1 1];
 
 %% -------- EQUALIZAÇÃO DE HISTOGRAMA -----------------
 
-imhisteq(boat);
+%imhisteq(boat);
