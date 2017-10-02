@@ -9,14 +9,16 @@ h = [-1 -1 -1; 0 0 0; 1 1 1];
 
 %% -------- CONVOLUÇÃO --------------------------------
 
-%G = convolution(moon, h, true);
-%figure, imshowpair(moon, G, 'montage')
+%G = convolution(butterfly, h);
+%figure, imshowpair(butterfly, G, 'montage')
 
-%G = convolution(lena, h, true);
-%figure, imshowpair(lena, G, 'montage')
+%test = imfilter(butterfly, h, 'conv');
+%figure, imshowpair(butterfly, test,'montage')
+%figure, imshowpair(G, test,'montage')
 
-%test = imfilter(image, h, 'conv');
-%figure, imshowpair(test,image,'montage')
+%test2 = rgb2gray(butterfly);
+%G = convolution(test2, h);
+%figure, imshowpair(test2, G, 'montage');
 
 %% -------- AGUÇAMENTO --------------------------------
 
@@ -37,13 +39,14 @@ h = [-1 -1 -1; 0 0 0; 1 1 1];
 
 %% -------- GAUSSIANO ---------------------------------
 
-N = 5;      % Size of Gaussian mask
-sigma = 2;
-gaussianFilter(castle, N, sigma, 2);    
+%N = 5;      % Size of Gaussian mask
+%sigma = 2;
+%gaussianFilter(castle, N, sigma, 2);    
 
 %% -------- EXPANSÃO DE HISTOGRAMA --------------------
 
-%imhistexp(boat);
+boat = imread('boat.jpg');
+imhistexp(boat);
 
 %% -------- EQUALIZAÇÃO DE HISTOGRAMA -----------------
 

@@ -1,7 +1,7 @@
 function imhisteq(image)
     aux = zeros(size(image));
     channel = 'RGB';
-    k = 255.0/(size(image, 1)*size(image, 1));
+    k = 255.0/(size(image, 1)*size(image, 1)); % 255/RC
     
     figure, subplot(2,4,1);
     imhist(rgb2gray(image));

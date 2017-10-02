@@ -1,7 +1,6 @@
 function ret = histexp(counts)
     rmin = find(counts>0, 1, 'first');
     rmax = find(counts>0, 1, 'last');
-    
     temp = zeros(size(counts));
     
     for r = rmin:rmax,

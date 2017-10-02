@@ -1,4 +1,4 @@
-function ret = convolution(A, h, crop)
+function ret = convolution(A, h)
     A = double(A);
     h = double(h);
     
@@ -11,30 +11,31 @@ function ret = convolution(A, h, crop)
     aux = size(A);
     aux = aux(1:2);
     newsize = (newsize -[1 1])*2 + aux;
-    newsize = [newsize 3];
+    newsize = [newsize size(A, 3)];
     B = zeros(newsize);
 
-    % Calculating temporary axis
+    % Calculating temporary boundaries
     begin = size(hr);
     begin = begin(1:2);
     endin = aux + begin -[1 1];
-    B(begin(1):endin(1), begin(2):endin(2), :) = A(:,:,:);
-    G = zeros(endin(1), endin(2), 3);
+    for k = 1:size(A, 3),
+        B(begin(1):endin(1), begin(2):endin(2), k) = A(:,:,k);
+    end
+    G = zeros(endin(1), endin(2), size(A, 3));
 
     % Convolution loop
     for i = 1:endin(1),
         for j = 1:endin(2),
             temp = B(i:(begin(1)-1) +i, j:(begin(2)-1) +j, :);
-            G(i,j,1) = sum(sum(hr.*temp(:,:,1)));
-            G(i,j,2) = sum(sum(hr.*temp(:,:,2)));
-            G(i,j,3) = sum(sum(hr.*temp(:,:,3)));
+            for k = 1:size(A, 3),
+                G(i,j,k) = sum(sum(hr.*temp(:,:,k)));
+            end
         end
     end
     
-    % Crop
-    if crop == true
-        G = G(1:endin(1)-(begin(1)-1), 1:endin(2)-(begin(2)-1), :);
-    end
+    % Cropping
+    G = G(floor(begin(1)/2):floor(size(G,1)-(begin(1)/2)), floor(begin(2)/2):floor(size(G,2)-(begin(2)/2)), :);
+    G = squeeze(G);
     
     ret = uint8(G);
 end
