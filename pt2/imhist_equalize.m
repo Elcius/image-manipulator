@@ -1,7 +1,7 @@
 function imhist_equalize(image)
     aux = zeros(size(image));
     channel = 'RGB';
-    k = 255.0/(size(image, 1)*size(image, 1)); % 255/RC
+    k = 255.0/(size(image, 1)*size(image, 2)); % 255/RC
     
     figure, subplot(2,4,1);
     imhist(rgb2gray(image));
@@ -11,10 +11,12 @@ function imhist_equalize(image)
     for i = 1:3,
         % Calculations
         [counts, binLoc] = imhist(image(:,:,i));
+        counts = histogram_equalize(counts, size(image));
         
         for r = 1:size(aux, 1),
             for c = 1:size(aux, 2),
-                aux(r,c,i) = round(k*sum(counts(1:double(image(r,c,i)))));
+                %aux(r,c,i) = round(k*sum(counts(1:double(image(r,c,i))))) +1;
+                aux(r,c,i) = counts(image(r,c,i) +1);
             end
         end
 

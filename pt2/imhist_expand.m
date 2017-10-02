@@ -41,7 +41,6 @@ function imhist_expand(image)
     
     pause;
     
-    figure, subplot(1,2,1); imshow(image); title('Original');
-    subplot(1,2,2); imshow(G); title('Expandida');
+    figure, imshowpair(image, G, 'montage');
     suptitle('Expansão de Histograma (comparação)');
 end

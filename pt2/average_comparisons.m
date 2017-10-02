@@ -4,7 +4,7 @@ num = 1/(M*N);  % Mask content
 h = repmat(num, M, N);
 
 tic
-G = convolution(A, h, true);
+G = convolution(A, h);
 figure, imshowpair(A, G, 'montage')
 
 execution_time = toc;

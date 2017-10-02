@@ -9,18 +9,25 @@ boat = imread('boat.jpg');
 %h = [-1 -1 -1; -1 8 -1; -1 -1 -1];
 %h = repmat(1/9, 3);
 %h = [0.025 0.1 0.25; 0.1 0.5 0.1; 0.025 0.1 0.025];
-%h = normrnd(-1.03,4,6,6)
+%h = normrnd(-0.7,0.35,3,3)
+vibesmask
 
 
 %% -------- CONVOLUÇÃO --------------------------------
 %{
 G = convolution(butterfly, h);
-figure, imshowpair(butterfly, G, 'montage')
-
 test = imfilter(butterfly, h, 'conv');
-figure, imshowpair(butterfly, test,'montage')
-figure, imshowpair(G, test,'montage')
 
+figure, subplot(2,1,1);
+imshowpair(butterfly, G, 'montage')
+title('Própria')
+
+subplot(2,1,2);
+imshowpair(butterfly, test,'montage')
+title('Matlab')
+suptitle('Convolução com h')
+
+%
 test2 = rgb2gray(butterfly);
 G = convolution(test2, h);
 figure, imshowpair(test2, G, 'montage');

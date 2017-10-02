@@ -27,7 +27,7 @@ end
 img3=img2(n1+1:r,n1+1:c);
 d=img3;
 
-figure, imshow(A);
-figure, imshow(uint8(d));
+figure, imshowpair(A, uint8(d), 'montage');
+suptitle('Filtro de Mediana');
 
 end

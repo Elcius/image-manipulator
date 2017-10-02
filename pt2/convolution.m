@@ -34,7 +34,7 @@ function ret = convolution(A, h)
     end
     
     % Cropping
-    G = G(floor(begin(1)/2):floor(size(G,1)-(begin(1)/2)), floor(begin(2)/2):floor(size(G,2)-(begin(2)/2)), :);
+    G = G(ceil(begin(1)/2):ceil(size(G,1)-(begin(1)/2)), ceil(begin(2)/2):ceil(size(G,2)-(begin(2)/2)), :);
     G = squeeze(G);
     
     ret = uint8(G);
