@@ -63,6 +63,12 @@ h = [-1 -1 -1; 0 0 0; 1 1 1];
 %mask_size = 3;    % median (3,5,...)
 %median_filter(lena, mask_size);
 
+%% -------- Difference of Gaussian --------------------
+N = 5; 
+sigma1 = 0.5;
+sigma2 = 1;
+difference_of_gaussian(butterfly, N, sigma1, sigma2);
+
 %% -------- EXPANSÃO DE HISTOGRAMA --------------------
 
 %imhistexp(boat);
