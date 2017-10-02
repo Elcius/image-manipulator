@@ -1,4 +1,4 @@
-function ret = histexp(counts)
+function ret = histogram_expand(counts)
     rmin = find(counts>0, 1, 'first');
     rmax = find(counts>0, 1, 'last');
     temp = zeros(size(counts));

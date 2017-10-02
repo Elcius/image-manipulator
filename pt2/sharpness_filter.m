@@ -1,4 +1,4 @@
-function sharpnessFilter(A, C, D, a)
+function sharpness_filter(A, C, D, a)
 
 if a == 1
     h = [ 0,     -C,     0;
@@ -11,7 +11,7 @@ elseif a == 2
          -C,    -C,     -C];
 end
 
-G = convolution(A, h, true);
+G = convolution(A, h);
 figure, imshowpair(A, G, 'montage')
 
 test = imfilter(A, h, 'conv');

@@ -1,4 +1,4 @@
-function embossFilter(A, c)
+function emboss_filter(A, c)
 
 if c == 1
     h = [ 0,        0,      0;
@@ -17,7 +17,7 @@ elseif c == 3
       
 end
 
-G = convolution(A, h, true);
+G = convolution(A, h);
 figure, imshowpair(A, G, 'montage')
 
 test = imfilter(A, h, 'conv');

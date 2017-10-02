@@ -1,4 +1,4 @@
-function imhisteq(image)
+function imhist_equalize(image)
     aux = zeros(size(image));
     channel = 'RGB';
     k = 255.0/(size(image, 1)*size(image, 1)); % 255/RC

@@ -1,4 +1,4 @@
-function imhistexp(image)
+function imhist_expand(image)
     aux = zeros(size(image));
     channel = 'RGB';
     

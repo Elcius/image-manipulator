@@ -1,4 +1,4 @@
-function ret = histequalize(counts, len)
+function ret = histogram_equalize(counts, len)
     k = 7/(len(1)*len(2));
     temp = zeros(size(counts));
     
