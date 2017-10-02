@@ -1,4 +1,4 @@
-function sharpnessFilter(A, C, D, a)
+function sharpness_filter(A, C, D, a)
 
 if a == 1
     h = [ 0,     -C,     0;

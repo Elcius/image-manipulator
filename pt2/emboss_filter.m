@@ -1,4 +1,4 @@
-function embossFilter(A, c)
+function emboss_filter(A, c)
 
 if c == 1
     h = [ 0,        0,      0;

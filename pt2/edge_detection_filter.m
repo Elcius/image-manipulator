@@ -1,4 +1,4 @@
-function edgeDetectionFilter(A, b)
+function edge_detection_filter(A, b)
 
 if b == 1
     h = [ -1/8,     -1/8,   -1/8;
